@@ -21,7 +21,7 @@
     <table border="1" border-color="white">
         <tr>
             <th>Company</th>
-            <th>Product</th>
+            <th>numberOfProducts</th>
         </tr>
             <c:forEach var="result" items="${result2}">
                 <tr>
