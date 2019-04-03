@@ -1,3 +1,7 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ page import="com.codecool.web.model.Task5Result" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,5 +18,19 @@
         <a href="task5">task5</a>
     </div>
     <h1>Task5</h1>
+    <table border="1" border-color="white">
+        <tr>
+            <th>Company</th>
+            <th>Product</th>
+            <th>Price</th>
+        </tr>
+            <c:forEach var="result" items="${result5}">
+                <tr>
+                <td>${result.company}</td>
+                <td>${result.product}</td>
+                <td>${result.price}</td>
+                </tr>
+            </c:forEach>
+    </table>
 </body>
 </html>
