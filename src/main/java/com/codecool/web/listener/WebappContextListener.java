@@ -19,8 +19,7 @@ public final class WebappContextListener implements ServletContextListener {
     @Override
     public void contextInitialized(ServletContextEvent sce) {
         registerCharacterEncodingFilter(sce);
-        DataSource dataSource = putDataSourceToServletContext(sce);
-        runDatabaseInitScript(dataSource, "/init.sql");
+        putDataSourceToServletContext(sce);
     }
 
     private void registerCharacterEncodingFilter(ServletContextEvent sce) {
@@ -43,7 +42,7 @@ public final class WebappContextListener implements ServletContextListener {
             */
             Context initCtx = new InitialContext();
             Context envCtx = (Context) initCtx.lookup("java:comp/env");
-            DataSource dataSource = (DataSource) envCtx.lookup("jdbc/couponStore");
+            DataSource dataSource = (DataSource) envCtx.lookup("jdbc/northwind");
             ServletContext servletCtx = sce.getServletContext();
             servletCtx.setAttribute("dataSource", dataSource);
             return dataSource;
@@ -51,41 +50,6 @@ public final class WebappContextListener implements ServletContextListener {
             ex.printStackTrace();
             throw new IllegalStateException(ex);
         }
-    }
-
-    private void runDatabaseInitScript(DataSource dataSource, String resource) {
-        /*
-            A new Connection is obtained to the database to run the initialization
-            script on startup. Because of the try-with-resource construct the
-            database connection is automatically closed at the end of the try-catch
-            block.
-        */
-        try (Connection connection = dataSource.getConnection()) {
-            ScriptUtils.executeSqlScript(connection, new ClassPathResource(resource));
-        } catch (Throwable t) {
-            t.printStackTrace();
-            throw new IllegalStateException(t);
-        }
-        /*
-            Doing this is basically it's equivalent to this
-
-            Connection connection = null;
-            try {
-                connection = dataSource.getConnection();
-                ScriptUtils.executeSqlScript(connection, new ClassPathResource(resource));
-            } catch (Throwable t) {
-                t.printStackTrace();
-                throw new IllegalStateException(t);
-            } finally {
-                if (connection != null) {
-                    try {
-                        connection.close();
-                    } catch (SQLException ex) {
-                        ex.printStackTrace();
-                    }
-                }
-            }
-        */
     }
 
     @Override
