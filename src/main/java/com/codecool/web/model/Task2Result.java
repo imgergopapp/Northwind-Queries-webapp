@@ -1,4 +1,4 @@
 package com.codecool.web.model;
 
-public class Task4 {
+public class Task2Result {
 }
