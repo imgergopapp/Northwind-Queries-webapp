@@ -1,6 +1,5 @@
 package com.codecool.web.dao;
 
-import com.codecool.web.model.Task1Result;
 import com.codecool.web.model.Task2Result;
 
 import java.sql.SQLException;
