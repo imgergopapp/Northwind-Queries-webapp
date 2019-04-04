@@ -3,10 +3,7 @@ package com.codecool.web.dao.database;
 import com.codecool.web.dao.Task1Dao;
 import com.codecool.web.model.Task1Result;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,7 +36,6 @@ public class DatabaseTask1Dao extends AbstractDao implements Task1Dao {
     private Task1Result fetchResult(ResultSet resultSet) throws SQLException {
         String company = resultSet.getString("Company");
         String product = resultSet.getString("Product");
-        Task1Result test = new Task1Result(product,company);
-        return test;
+        return new Task1Result(product, company);
     }
 }
