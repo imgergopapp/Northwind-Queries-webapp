@@ -6,7 +6,6 @@ import com.codecool.web.service.Task1Service;
 import com.codecool.web.service.exception.InvalidFormException;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class SimpleTask1Service implements Task1Service {

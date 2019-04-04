@@ -1,7 +1,5 @@
 package com.codecool.web.model;
 
-import java.text.DecimalFormat;
-
 public class Task5Result {
     private String company;
     private String product;

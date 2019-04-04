@@ -8,6 +8,7 @@ import java.util.List;
 public interface Task3Dao {
 
     List<Task3Result> findAll() throws SQLException;
+
     List<Task3Result> orderDesc() throws SQLException;
 
 }

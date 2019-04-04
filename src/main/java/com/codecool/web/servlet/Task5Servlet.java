@@ -1,20 +1,10 @@
 package com.codecool.web.servlet;
 
-import com.codecool.web.dao.Task2Dao;
-import com.codecool.web.dao.Task4Dao;
 import com.codecool.web.dao.Task5Dao;
-import com.codecool.web.dao.database.DatabaseTask2Dao;
-import com.codecool.web.dao.database.DatabaseTask4Dao;
 import com.codecool.web.dao.database.DatabaseTask5Dao;
-import com.codecool.web.model.Task2Result;
-import com.codecool.web.model.Task4Result;
 import com.codecool.web.model.Task5Result;
-import com.codecool.web.service.Task2Service;
-import com.codecool.web.service.Task4Service;
 import com.codecool.web.service.Task5Service;
 import com.codecool.web.service.exception.InvalidFormException;
-import com.codecool.web.service.simple.SimpleTask2Service;
-import com.codecool.web.service.simple.SimpleTask4Service;
 import com.codecool.web.service.simple.SimpleTask5Service;
 
 import javax.servlet.ServletException;

@@ -1,9 +1,6 @@
 package com.codecool.web.dao.database;
 
-import com.codecool.web.dao.Task2Dao;
 import com.codecool.web.dao.Task3Dao;
-import com.codecool.web.model.Task1Result;
-import com.codecool.web.model.Task2Result;
 import com.codecool.web.model.Task3Result;
 
 import java.sql.Connection;
@@ -26,10 +23,10 @@ public class DatabaseTask3Dao extends AbstractDao implements Task3Dao {
         List<Task3Result> task3Results = new ArrayList<>();
 
         String sql = "SELECT company_name AS Company,COUNT(DISTINCT product_name) AS NumberOfProducts FROM products " +
-                     "INNER JOIN suppliers ON products.supplier_id = suppliers.supplier_id " +
-                     "GROUP BY company " +
-                     "HAVING COUNT(DISTINCT product_name) = 5 " +
-                     "ORDER BY Company;";
+            "INNER JOIN suppliers ON products.supplier_id = suppliers.supplier_id " +
+            "GROUP BY company " +
+            "HAVING COUNT(DISTINCT product_name) = 5 " +
+            "ORDER BY Company;";
 
         try (Statement statement = connection.createStatement();
              ResultSet resultSet = statement.executeQuery(sql)) {

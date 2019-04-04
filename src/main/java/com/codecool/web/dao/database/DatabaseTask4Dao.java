@@ -1,7 +1,6 @@
 package com.codecool.web.dao.database;
 
 import com.codecool.web.dao.Task4Dao;
-
 import com.codecool.web.model.Task4Result;
 
 import java.sql.*;
@@ -21,9 +20,9 @@ public class DatabaseTask4Dao extends AbstractDao implements Task4Dao {
         List<Task4Result> task4Results = new ArrayList<>();
 
         String sql = "SELECT company_name AS Company, ARRAY_AGG(order_id) AS \"Order IDs\" FROM customers " +
-                     "LEFT JOIN orders ON customers.customer_id = orders.customer_id " +
-                     "GROUP BY Company " +
-                     "ORDER BY Company;";
+            "LEFT JOIN orders ON customers.customer_id = orders.customer_id " +
+            "GROUP BY Company " +
+            "ORDER BY Company;";
 
         try (Statement statement = connection.createStatement();
              ResultSet resultSet = statement.executeQuery(sql)) {
@@ -59,10 +58,10 @@ public class DatabaseTask4Dao extends AbstractDao implements Task4Dao {
     private Task4Result fetchResult(ResultSet resultSet) throws SQLException {
         String company = resultSet.getString("Company");
         Array array = resultSet.getArray("Order IDs");
-        Object [] orders =  (Object[]) array.getArray();
+        Object[] orders = (Object[]) array.getArray();
         List<Short> ints = new ArrayList<>();
-        for (Object object : orders){
-            ints.add((Short)object);
+        for (Object object : orders) {
+            ints.add((Short) object);
         }
         return new Task4Result(company, ints);
     }

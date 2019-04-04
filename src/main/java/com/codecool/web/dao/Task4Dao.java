@@ -8,6 +8,7 @@ import java.util.List;
 public interface Task4Dao {
 
     List<Task4Result> findAll() throws SQLException;
+
     List<Task4Result> filter(String company) throws SQLException;
 
 

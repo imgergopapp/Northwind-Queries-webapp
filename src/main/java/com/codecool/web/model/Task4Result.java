@@ -10,6 +10,7 @@ public class Task4Result {
         this.company = company;
         this.orders = orders;
     }
+
     public Task4Result(String company) {
         this.company = company;
     }

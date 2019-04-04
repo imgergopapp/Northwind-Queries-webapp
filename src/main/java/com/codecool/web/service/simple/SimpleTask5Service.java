@@ -23,7 +23,7 @@ public class SimpleTask5Service implements Task5Service {
 
     @Override
     public List<Task5Result> getFilteredResults(double minPrince) throws SQLException, InvalidFormException {
-        if (minPrince < 0){
+        if (minPrince < 0) {
             throw new InvalidFormException("ERROR ! Price should be not negative... !");
         }
         return task5Dao.filter(minPrince);

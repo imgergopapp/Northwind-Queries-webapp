@@ -1,10 +1,8 @@
 package com.codecool.web.service.simple;
 
 import com.codecool.web.dao.Task4Dao;
-import com.codecool.web.model.Task2Result;
 import com.codecool.web.model.Task4Result;
 import com.codecool.web.service.Task4Service;
-import com.codecool.web.service.exception.InvalidFormException;
 
 import java.sql.SQLException;
 import java.util.List;

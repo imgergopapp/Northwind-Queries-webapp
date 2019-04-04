@@ -1,8 +1,6 @@
 package com.codecool.web.dao.database;
 
 import com.codecool.web.dao.Task5Dao;
-
-import com.codecool.web.model.Task4Result;
 import com.codecool.web.model.Task5Result;
 
 import java.sql.*;
@@ -22,10 +20,10 @@ public class DatabaseTask5Dao extends AbstractDao implements Task5Dao {
         List<Task5Result> task5Results = new ArrayList<>();
 
         String sql = "SELECT company_name AS Company,product_name AS Product, Price FROM ( " +
-                     "SELECT company_name, product_name, MAX(unit_price) AS Price FROM suppliers " +
-                     "INNER JOIN products ON products.supplier_id = suppliers.supplier_id " +
-                     "GROUP BY company_name, product_name) As foo " +
-                     "ORDER BY Price DESC, product_name, company_name;";
+            "SELECT company_name, product_name, MAX(unit_price) AS Price FROM suppliers " +
+            "INNER JOIN products ON products.supplier_id = suppliers.supplier_id " +
+            "GROUP BY company_name, product_name) As foo " +
+            "ORDER BY Price DESC, product_name, company_name;";
 
         try (Statement statement = connection.createStatement();
              ResultSet resultSet = statement.executeQuery(sql)) {
@@ -61,10 +59,10 @@ public class DatabaseTask5Dao extends AbstractDao implements Task5Dao {
 
 
     private Task5Result fetchResult(ResultSet resultSet) throws SQLException {
-    String company = resultSet.getString("Company");
-    String product = resultSet.getString("Product");
-    double price = resultSet.getDouble("Price");
+        String company = resultSet.getString("Company");
+        String product = resultSet.getString("Product");
+        double price = resultSet.getDouble("Price");
 
-    return new Task5Result(company,product,price);
+        return new Task5Result(company, product, price);
     }
 }
