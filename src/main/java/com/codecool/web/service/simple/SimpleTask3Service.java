@@ -16,4 +16,7 @@ public class SimpleTask3Service implements Task3Service {
     public List<Task3Result> getResults() throws SQLException {
         return task3Dao.findAll();
     }
+    public List<Task3Result> getOrderDescResults() throws SQLException {
+        return task3Dao.orderDesc();
+    }
 }

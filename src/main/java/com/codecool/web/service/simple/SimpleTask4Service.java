@@ -1,8 +1,11 @@
 package com.codecool.web.service.simple;
 
 import com.codecool.web.dao.Task4Dao;
+import com.codecool.web.model.Task2Result;
 import com.codecool.web.model.Task4Result;
 import com.codecool.web.service.Task4Service;
+import com.codecool.web.service.exception.InvalidFormException;
+
 import java.sql.SQLException;
 import java.util.List;
 
@@ -15,5 +18,9 @@ public class SimpleTask4Service implements Task4Service {
 
     public List<Task4Result> getResults() throws SQLException {
         return task4Dao.findAll();
+    }
+
+    public List<Task4Result> getFilteredResults(String company) throws SQLException {
+        return task4Dao.filter(company);
     }
 }
