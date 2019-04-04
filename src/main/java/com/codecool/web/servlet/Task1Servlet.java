@@ -4,6 +4,7 @@ import com.codecool.web.dao.Task1Dao;
 import com.codecool.web.dao.database.DatabaseTask1Dao;
 import com.codecool.web.model.Task1Result;
 import com.codecool.web.service.Task1Service;
+import com.codecool.web.service.exception.InvalidFormException;
 import com.codecool.web.service.simple.SimpleTask1Service;
 
 import javax.servlet.ServletException;
@@ -31,6 +32,25 @@ public final class Task1Servlet extends AbstractServlet {
             req.getRequestDispatcher("task1.jsp").forward(req, resp);
         } catch (SQLException ex) {
             throw new ServletException(ex);
+        }
+    }
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        try (Connection connection = getConnection(req.getServletContext())) {
+            Task1Dao task1Dao = new DatabaseTask1Dao(connection);
+            Task1Service task1Service = new SimpleTask1Service(task1Dao);
+            int limit =Integer.valueOf(req.getParameter("limit")) ;
+            List<Task1Result> task1results = task1Service.getFilteredResults(limit);
+
+            req.setAttribute("result1", task1results);
+            req.getRequestDispatcher("task1.jsp").forward(req, resp);
+        } catch (SQLException ex) {
+            throw new ServletException(ex);
+        }
+        catch (InvalidFormException ife){
+            req.setAttribute("errorMsg", ife.getMessage());
+            req.getRequestDispatcher("task1.jsp").forward(req, resp);
         }
     }
 }
