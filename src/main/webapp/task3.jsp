@@ -18,10 +18,16 @@
         <a href="task5">task5</a>
     </div>
     <h1>Task3</h1>
+    <form method="post" action="task3">
+        <input type="radio" name="order" value="asc"> Ascending
+        <input type="radio" name="order" value="desc"> Descending
+        <input type="submit" value="Order!">
+    </form>
+    <br>
     <table border="1" border-color="white">
         <tr>
             <th>Company</th>
-            <th>numberOfProducts</th>
+            <th>Number Of Products</th>
         </tr>
             <c:forEach var="result" items="${result3}">
                 <tr>

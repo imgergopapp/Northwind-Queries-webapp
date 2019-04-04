@@ -22,6 +22,7 @@
       <input type="number" placeholder="Limit" name="limit" required>
       <input type="submit" value="Filter!">
     </form>
+    <br>
     <table border="1" border-color="white">
         <tr>
             <th>Company</th>

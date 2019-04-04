@@ -18,10 +18,15 @@
         <a href="task5">task5</a>
     </div>
     <h1>Task2</h1>
+    <form method="post" action="task2">
+      <input type="number" placeholder="Min number of products" name="minProd" required>
+      <input type="submit" value="Filter!">
+    </form>
+    <br>
     <table border="1" border-color="white">
         <tr>
             <th>Company</th>
-            <th>numberOfProducts</th>
+            <th>Number Of Products</th>
         </tr>
             <c:forEach var="result" items="${result2}">
                 <tr>
@@ -30,5 +35,6 @@
                 </tr>
             </c:forEach>
     </table>
+    <h1>${errorMsg}</h1>
 </body>
 </html>

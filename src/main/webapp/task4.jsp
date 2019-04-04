@@ -17,6 +17,11 @@
         <a href="task5">task5</a>
     </div>
     <h1>Task4</h1>
+    <form method="post" action="task4">
+      <input type="String" placeholder="Company" name="company" required>
+      <input type="submit" value="Filter!">
+    </form>
+    <br>
     <table border="1" border-color="white">
         <tr>
             <th>Company</th>

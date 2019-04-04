@@ -18,6 +18,11 @@
         <a href="task5">task5</a>
     </div>
     <h1>Task5</h1>
+    <form method="post" action="task5">
+      <input type="number" step="0.01" placeholder="Min price" name="minPrice" required>
+      <input type="submit" value="Filter!">
+    </form>
+    <br>
     <table border="1" border-color="white">
         <tr>
             <th>Company</th>
