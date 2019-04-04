@@ -8,5 +8,6 @@ import java.util.List;
 public interface Task2Dao {
 
     List<Task2Result> findAll() throws SQLException;
+    List<Task2Result> filter(int minNumbOfProducts) throws SQLException;
 
 }
