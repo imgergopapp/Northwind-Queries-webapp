@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface Task4Service {
     List<Task4Result> getResults() throws SQLException;
+
+    List<Task4Result> getFilteredResults(String company) throws SQLException;
 }
