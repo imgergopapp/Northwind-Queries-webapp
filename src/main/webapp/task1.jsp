@@ -18,6 +18,10 @@
         <a href="task5">task5</a>
     </div>
     <h1>Task1</h1>
+    <form method="post" action="task1">
+      <input type="number" placeholder="Limit" name="limit" required>
+      <input type="submit" value="Filter!">
+    </form>
     <table border="1" border-color="white">
         <tr>
             <th>Company</th>
@@ -30,5 +34,6 @@
                 </tr>
             </c:forEach>
     </table>
+    <h1>${errorMsg}</h1>
 </body>
 </html>
