@@ -4,10 +4,7 @@ import com.codecool.web.dao.Task2Dao;
 import com.codecool.web.model.Task1Result;
 import com.codecool.web.model.Task2Result;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,6 +29,28 @@ public class DatabaseTask2Dao extends AbstractDao implements Task2Dao {
              ResultSet resultSet = statement.executeQuery(sql)) {
             while (resultSet.next()) {
                 task2Results.add(fetchResult(resultSet));
+            }
+        }
+        return task2Results;
+    }
+
+    @Override
+    public List<Task2Result> filter(int minNumbOfProducts) throws SQLException {
+
+        List<Task2Result> task2Results = new ArrayList<>();
+
+        String sql = "SELECT company_name AS Company, COUNT( *)AS NumberOfProducts FROM products " +
+            "INNER JOIN suppliers ON products.supplier_id = suppliers.supplier_id " +
+            "GROUP BY company " +
+            "HAVING (COUNT(*)) >= ? " +
+            "ORDER BY NumberOfProducts DESC, Company;";
+
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1, minNumbOfProducts);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                while (resultSet.next()) {
+                    task2Results.add(fetchResult(resultSet));
+                }
             }
         }
         return task2Results;
