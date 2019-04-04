@@ -33,4 +33,21 @@ public final class Task4Servlet extends AbstractServlet {
             throw new ServletException(ex);
         }
     }
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        try (Connection connection = getConnection(req.getServletContext())) {
+
+            String company = req.getParameter("company");
+
+            Task4Dao task4Dao = new DatabaseTask4Dao(connection);
+            Task4Service task4Service = new SimpleTask4Service(task4Dao);
+            List<Task4Result> task4results = task4Service.getFilteredResults(company);
+
+            req.setAttribute("result4", task4results);
+            req.getRequestDispatcher("task4.jsp").forward(req, resp);
+        } catch (SQLException ex) {
+            throw new ServletException(ex);
+        }
+    }
 }
