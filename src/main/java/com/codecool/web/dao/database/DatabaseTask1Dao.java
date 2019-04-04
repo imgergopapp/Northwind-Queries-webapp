@@ -33,6 +33,28 @@ public class DatabaseTask1Dao extends AbstractDao implements Task1Dao {
         return task1Results;
     }
 
+    @Override
+    public List<Task1Result> filter(int limit) throws SQLException {
+
+        List<Task1Result> task1Results = new ArrayList<>();
+
+        //Task 1 answer
+        String sql = "SELECT product_name AS Product, company_name AS Company FROM products " +
+            "INNER JOIN suppliers ON products.supplier_id = suppliers.supplier_id " +
+            "ORDER BY product, company " +
+            "LIMIT ?";
+
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1, limit);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                while (resultSet.next()) {
+                    task1Results.add(fetchResult(resultSet));
+                }
+            }
+        }
+        return task1Results;
+    }
+
     private Task1Result fetchResult(ResultSet resultSet) throws SQLException {
         String company = resultSet.getString("Company");
         String product = resultSet.getString("Product");
