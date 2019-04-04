@@ -23,13 +23,10 @@ public class SimpleTask1Service implements Task1Service {
     @Override
     public List<Task1Result> getFilteredResults(int limit) throws SQLException, InvalidFormException {
         List<Task1Result> results = task1Dao.findAll();
-        List<Task1Result> filteredResults = new ArrayList<>();
         if (limit < 0 || limit > results.size()) {
             throw new InvalidFormException("ERROR! The Limit should be 0 <= Limit <= " + results.size() + " !");
         }
-        for (int i = 0; i < limit; i++) {
-            filteredResults.add(results.get(i));
-        }
-        return filteredResults;
+
+        return task1Dao.filter(limit);
     }
 }
