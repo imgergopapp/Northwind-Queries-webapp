@@ -1,6 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
-<%@ page import="com.codecool.web.model.Task1Result" %>
 
 <!DOCTYPE html>
 <html lang="en">

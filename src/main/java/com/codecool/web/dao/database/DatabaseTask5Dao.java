@@ -19,12 +19,11 @@ public class DatabaseTask5Dao extends AbstractDao implements Task5Dao {
 
         List<Task5Result> task5Results = new ArrayList<>();
 
-        String sql = "SELECT company_name AS Company,product_name AS Product, Price FROM ( " +
-            "SELECT company_name, product_name, MAX(unit_price) AS Price FROM suppliers " +
-            "INNER JOIN products ON products.supplier_id = suppliers.supplier_id " +
-            "GROUP BY company_name, product_name) As foo " +
-            "ORDER BY Price DESC, product_name, company_name;";
-
+        String sql ="SELECT * FROM( " +
+            "SELECT DISTINCT ON (company_name) company_name AS Company, product_name AS Product, unit_price AS Price FROM suppliers " +
+            "INNER JOIN products ON products.supplier_id = suppliers.supplier_id "+
+            "ORDER BY company_name, Price DESC ) As foo " +
+            "ORDER BY Price DESC, Product, Company ;";
         try (Statement statement = connection.createStatement();
              ResultSet resultSet = statement.executeQuery(sql)) {
             while (resultSet.next()) {
@@ -39,12 +38,13 @@ public class DatabaseTask5Dao extends AbstractDao implements Task5Dao {
 
         List<Task5Result> task5Results = new ArrayList<>();
 
-        String sql = "SELECT company_name AS Company,product_name AS Product, Price FROM ( " +
-            "SELECT company_name, product_name, MAX(unit_price) AS Price FROM suppliers " +
-            "INNER JOIN products ON products.supplier_id = suppliers.supplier_id " +
-            "GROUP BY company_name, product_name " +
-            "HAVING MAX(unit_price) >= ?) As foo " +
-            "ORDER BY Price DESC, product_name, company_name;";
+
+        String sql ="SELECT * FROM( " +
+            "SELECT DISTINCT ON (company_name) company_name AS Company, product_name AS Product, unit_price AS Price FROM suppliers " +
+            "INNER JOIN products ON products.supplier_id = suppliers.supplier_id "+
+            "ORDER BY company_name, Price DESC ) As foo " +
+            "WHERE Price >= ? " +
+            "ORDER BY Price DESC, Product, Company ;";
 
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setDouble(1, minPrice);
